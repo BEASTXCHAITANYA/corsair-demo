@@ -61,7 +61,7 @@ export default function Landing() {
           A Superhuman-style Gmail and Google Calendar workflow app powered by Corsair.
         </p>
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
-          <button onClick={() => router.push("/app")} style={{ background: "linear-gradient(135deg, #7C3AED, #6D28D9)", color: "#fff", border: "none", borderRadius: 10, padding: "14px 28px", fontSize: 15, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 8, boxShadow: "0 0 40px rgba(124,58,237,0.4)" }}>
+          <button onClick={() => router.push("/app")} style={{ background: "linear-gradient(135deg, #7C3AED, #6D28D9)", color: "#fff", border: "none", borderRadius: 10, padding: "16px 36px", fontSize: 17, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 8, boxShadow: "0 0 50px rgba(124,58,237,0.5)", letterSpacing: "-0.01em" }}>
             Open FlowMail <ArrowRight size={15} />
           </button>
           <a href="https://github.com/BEASTXCHAITANYA/corsair-demo" target="_blank" rel="noopener noreferrer" style={{ background: "rgba(255,255,255,0.05)", color: "#F1F1F1", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "14px 28px", fontSize: 15, fontWeight: 600, display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>

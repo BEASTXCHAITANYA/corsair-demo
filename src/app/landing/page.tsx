@@ -28,7 +28,7 @@ export default function Landing() {
             onMouseLeave={(e) => (e.currentTarget.style.color = "#475569")}>
             Features
           </a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: "#475569", textDecoration: "none", transition: "color 150ms" }}
+          <a href="https://github.com/BEASTXCHAITANYA/corsair-demo" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: "#475569", textDecoration: "none", transition: "color 150ms" }}
             onMouseEnter={(e) => (e.currentTarget.style.color = "#E2E8F0")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "#475569")}>
             GitHub
@@ -64,7 +64,7 @@ export default function Landing() {
           <button onClick={() => router.push("/app")} style={{ background: "linear-gradient(135deg, #7C3AED, #6D28D9)", color: "#fff", border: "none", borderRadius: 10, padding: "14px 28px", fontSize: 15, fontWeight: 600, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 8, boxShadow: "0 0 40px rgba(124,58,237,0.4)" }}>
             Open FlowMail <ArrowRight size={15} />
           </button>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" style={{ background: "rgba(255,255,255,0.05)", color: "#F1F1F1", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "14px 28px", fontSize: 15, fontWeight: 600, display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
+          <a href="https://github.com/BEASTXCHAITANYA/corsair-demo" target="_blank" rel="noopener noreferrer" style={{ background: "rgba(255,255,255,0.05)", color: "#F1F1F1", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "14px 28px", fontSize: 15, fontWeight: 600, display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
             View on GitHub
           </a>
         </div>

@@ -11,6 +11,23 @@
 
 FlowMail is a premium productivity app that unifies your Gmail inbox and Google Calendar into one beautiful interface — powered by Corsair's integration layer. Send emails, create calendar invites, and automate workflows using natural language AI commands.
 
+## Screenshots
+
+### Landing Page
+![Landing Page](screenshots/landing.png)
+
+### Smart Inbox
+![Inbox](screenshots/inbox.png)
+
+### AI Agent Chat
+![AI Chat](screenshots/ai-chat.png)
+
+### ⌘K Command Palette
+![Command Palette](screenshots/command-palette.png)
+
+### Live AI Action Feed
+![Action Feed](screenshots/action-feed.png)
+
 ## Features
 
 ### Core

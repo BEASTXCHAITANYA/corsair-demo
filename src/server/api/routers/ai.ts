@@ -63,11 +63,12 @@ export const aiRouter = createTRPCRouter({
           { role: "system", content: SYSTEM_PROMPT },
           ...input.messages,
         ],
-        max_tokens: 500,
+        max_tokens: 1000,
         temperature: 0.3,
       });
 
       const content = completion.choices[0]?.message?.content ?? "";
+      console.log("[AI RAW]", content);
       const cleaned = content.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
 
       // Try to parse as action
@@ -127,19 +128,32 @@ export const aiRouter = createTRPCRouter({
             }
 
             case "send_invite": {
+              console.log("[send_invite] executing with params:", parsed.params);
               const { summary, start, end, attendees, description } = parsed.params as {
                 summary: string; start: string; end: string;
                 attendees: string[]; description?: string;
               };
-              await run(tenant, "googlecalendar.api.events.create", {
-                calendarId: "primary",
-                sendUpdates: "all",
-                event: {
-                  summary, description,
-                  start: { dateTime: start }, end: { dateTime: end },
-                  attendees: attendees.map((email: string) => ({ email })),
-                },
-              });
+              try {
+                const result = await run<{ id?: string }>(tenant, "googlecalendar.api.events.create", {
+                  calendarId: "primary",
+                  sendUpdates: "all",
+                  event: {
+                    summary, description,
+                    start: { dateTime: start, timeZone: "Asia/Kolkata" },
+                    end: { dateTime: end, timeZone: "Asia/Kolkata" },
+                    attendees: attendees.map((email: string) => ({ email })),
+                  },
+                });
+                console.log("[send_invite] success:", result);
+              } catch (err) {
+                console.error("[send_invite] FAILED:", err);
+                return {
+                  type: "action" as const,
+                  action: "send_invite",
+                  message: parsed.message,
+                  result: `❌ Failed to send invite: ${String(err)}`,
+                };
+              }
               return {
                 type: "action" as const,
                 action: "send_invite",

@@ -59,6 +59,24 @@ FlowMail is a premium productivity app that unifies your Gmail inbox and Google 
 - **Corsair Search API** — Real email search via Corsair Gmail API
 - **Zero hardcoded data** — All data from live Corsair integrations
 
+### UI/UX Design System
+- **Glassmorphism** — Frosted glass overlays on search, compose, AI chat, and settings
+- **Deep Navy Color System** — `#080B14` base with purple `#7C3AED` accent and cyan highlights
+- **Typography** — Inter for UI + JetBrains Mono for timestamps and email addresses
+- **Colored Sender Avatars** — Initials with hashed color per sender
+- **Unread Indicators** — Purple left border + dot on unread emails
+- **Skeleton Loading** — Shimmer animation on email list while fetching
+- **Animated Empty States** — Floating SVG envelope illustration
+- **Live AI Action Feed** — Color-coded by action type (green=email, blue=calendar, purple=search)
+- **Entrance Animations** — Slide-in cards, fade-up sections, staggered lists
+- **Top Header Bar** — Logo + search shortcut + notification bell + avatar
+- **Sidebar** — Active glow pulse, CSS tooltips on hover, spring bounce animations
+- **Corsair MCP Badge** — Animated rotating gradient border with live pulse indicator
+- **Command Palette** — Linear-style ⌘K with quick actions + search results
+- **Compose Window** — Floating Gmail-style with minimize/maximize
+- **Toast Notifications** — Glassmorphism toasts with colored left border by type
+- **Mobile Navbar** — Bottom navigation bar on screens ≤768px
+
 ---
 
 ## Corsair Features Used

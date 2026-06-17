@@ -106,7 +106,7 @@ export function ComposeWindow({ open, onClose, defaultTo = "", defaultSubject = 
               placeholder="recipient@example.com"
               type="email"
               autoFocus
-              style={{ flex: 1, background: "transparent", border: "none", outline: "none", fontSize: 13, color: "#F1F1F1", fontFamily: "inherit", caretColor: "#7C3AED" }}
+              style={{ flex: 1, background: "transparent", border: "none", outline: "none", fontSize: 13, color: "#F1F1F1", fontFamily: "inherit", caretColor: "#B4F24A" }}
             />
           </div>
 
@@ -117,7 +117,7 @@ export function ComposeWindow({ open, onClose, defaultTo = "", defaultSubject = 
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               placeholder="Subject"
-              style={{ flex: 1, background: "transparent", border: "none", outline: "none", fontSize: 13, color: "#F1F1F1", fontFamily: "inherit", caretColor: "#7C3AED" }}
+              style={{ flex: 1, background: "transparent", border: "none", outline: "none", fontSize: 13, color: "#F1F1F1", fontFamily: "inherit", caretColor: "#B4F24A" }}
             />
           </div>
 
@@ -136,7 +136,7 @@ export function ComposeWindow({ open, onClose, defaultTo = "", defaultSubject = 
               flex: 1, padding: "14px 16px",
               background: "transparent", border: "none", outline: "none",
               fontSize: 14, color: "#F1F1F1", fontFamily: "inherit",
-              resize: "none", lineHeight: 1.7, caretColor: "#7C3AED",
+              resize: "none", lineHeight: 1.7, caretColor: "#B4F24A",
             }}
           />
 
@@ -151,7 +151,7 @@ export function ComposeWindow({ open, onClose, defaultTo = "", defaultSubject = 
               onClick={() => { if (to && subject && body) sendEmail.mutate({ to, subject, body }); }}
               disabled={sendEmail.isPending || !to || !subject || !body}
               style={{
-                background: to && subject && body ? "linear-gradient(135deg, #7C3AED, #6D28D9)" : "rgba(255,255,255,0.05)",
+                background: to && subject && body ? "linear-gradient(135deg, #B4F24A, #A3E635)" : "rgba(255,255,255,0.05)",
                 color: to && subject && body ? "#fff" : "#555",
                 border: "none", borderRadius: 8, padding: "8px 16px",
                 fontSize: 13, fontWeight: 600, cursor: to && subject && body ? "pointer" : "not-allowed",

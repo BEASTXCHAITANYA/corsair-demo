@@ -32,15 +32,32 @@ type GmailPart = {
 export function extractBodyFromPayload(payload?: GmailPart): string {
   if (!payload) return "";
 
+  // For multipart, scan all immediate children and prefer text/html over text/plain.
+  // HTML versions render tracking links as styled hyperlinks rather than raw URL text.
+  if (payload.parts && payload.parts.length > 0) {
+    let html = "";
+    let plain = "";
+    for (const part of payload.parts) {
+      if (!html && part.mimeType === "text/html" && part.body?.data) {
+        html = decodeBase64Url(part.body.data);
+      } else if (!plain && part.mimeType === "text/plain" && part.body?.data) {
+        plain = decodeBase64Url(part.body.data);
+      } else if (!html && !plain) {
+        const nested = extractBodyFromPayload(part);
+        if (nested) plain = nested;
+      }
+    }
+    if (html) return html;
+    if (plain) return plain;
+  }
+
+  // Single-part: prefer html, then plain, then any raw data
+  if (payload.mimeType === "text/html" && payload.body?.data) {
+    return decodeBase64Url(payload.body.data);
+  }
   if (payload.mimeType === "text/plain" && payload.body?.data) {
     return decodeBase64Url(payload.body.data);
   }
-
-  for (const part of payload.parts ?? []) {
-    const text = extractBodyFromPayload(part);
-    if (text) return text;
-  }
-
   if (payload.body?.data) {
     return decodeBase64Url(payload.body.data);
   }

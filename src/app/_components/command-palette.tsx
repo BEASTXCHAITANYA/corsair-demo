@@ -8,6 +8,7 @@ import { useToast } from "@/app/_components/toast";
 interface Action {
   id: string;
   type: "action" | "email" | "event";
+  accent: "green" | "orange";
   title: string;
   subtitle: string;
   icon: React.ReactNode;
@@ -73,70 +74,70 @@ export function CommandPalette({ open, onClose, onNavigate, onCompose, onOpenAI 
   // Static actions (always shown when no query)
   const staticActions: Action[] = [
     {
-      id: "compose", type: "action",
+      id: "compose", type: "action", accent: "green",
       title: "Compose new email",
       subtitle: "Open compose window",
-      icon: <Send size={15} color="#7C3AED" />,
+      icon: <Send size={15} color="#B4F24A" />,
       onSelect: () => { onCompose(); onClose(); },
     },
     {
-      id: "new-event", type: "action",
-      title: "Create calendar event",
-      subtitle: "Add a new event",
-      icon: <Plus size={15} color="#22C55E" />,
-      onSelect: () => { onNavigate("calendar"); onClose(); },
-    },
-    {
-      id: "refresh", type: "action",
-      title: "Refresh inbox",
-      subtitle: "Sync latest emails from Gmail",
-      icon: <RefreshCw size={15} color="#06B6D4" />,
-      onSelect: () => refreshInbox.mutate(),
-    },
-    {
-      id: "ai", type: "action",
+      id: "ai", type: "action", accent: "green",
       title: "Open AI Assistant",
       subtitle: "Chat with FlowMail AI (⌘/)",
-      icon: <Bot size={15} color="#F59E0B" />,
+      icon: <Bot size={15} color="#B4F24A" />,
       onSelect: () => { onOpenAI(); onClose(); },
     },
     {
-      id: "goto-gmail", type: "action",
+      id: "goto-gmail", type: "action", accent: "green",
       title: "Go to Inbox",
       subtitle: "Switch to email view",
-      icon: <Mail size={15} color="#8A8A8A" />,
+      icon: <Mail size={15} color="#B4F24A" />,
       onSelect: () => { onNavigate("gmail"); onClose(); },
     },
     {
-      id: "goto-calendar", type: "action",
-      title: "Go to Calendar",
-      subtitle: "Switch to calendar view",
-      icon: <Calendar size={15} color="#8A8A8A" />,
+      id: "new-event", type: "action", accent: "orange",
+      title: "Create calendar event",
+      subtitle: "Add a new event",
+      icon: <Plus size={15} color="#F28C28" />,
       onSelect: () => { onNavigate("calendar"); onClose(); },
     },
     {
-      id: "goto-settings", type: "action",
+      id: "goto-calendar", type: "action", accent: "orange",
+      title: "Go to Calendar",
+      subtitle: "Switch to calendar view",
+      icon: <Calendar size={15} color="#F28C28" />,
+      onSelect: () => { onNavigate("calendar"); onClose(); },
+    },
+    {
+      id: "goto-settings", type: "action", accent: "orange",
       title: "Go to Settings",
       subtitle: "App preferences and integrations",
-      icon: <Settings size={15} color="#8A8A8A" />,
+      icon: <Settings size={15} color="#F28C28" />,
       onSelect: () => { onNavigate("settings"); onClose(); },
+    },
+    {
+      id: "refresh", type: "action", accent: "orange",
+      title: "Refresh inbox",
+      subtitle: "Sync latest emails from Gmail",
+      icon: <RefreshCw size={15} color="#F28C28" />,
+      onSelect: () => refreshInbox.mutate(),
     },
   ];
 
   // Search results as actions
   const searchActions: Action[] = [
     ...(emailResults.data ?? []).slice(0, 3).map((e) => ({
-      id: e.id, type: "email" as const,
+      id: e.id, type: "email" as const, accent: "green" as const,
       title: e.subject || "(no subject)",
       subtitle: e.from || "Unknown sender",
-      icon: <Mail size={15} color="#7C3AED" />,
+      icon: <Mail size={15} color="#B4F24A" />,
       onSelect: () => onClose(),
     })),
     ...(eventResults.data ?? []).slice(0, 2).map((e) => ({
-      id: e.id, type: "event" as const,
+      id: e.id, type: "event" as const, accent: "orange" as const,
       title: e.summary || "Untitled event",
       subtitle: e.start ? new Date(e.start).toLocaleDateString([], { weekday: "short", month: "short", day: "numeric" }) : "",
-      icon: <Calendar size={15} color="#22C55E" />,
+      icon: <Calendar size={15} color="#F28C28" />,
       onSelect: () => onClose(),
     })),
   ];
@@ -180,10 +181,10 @@ export function CommandPalette({ open, onClose, onNavigate, onCompose, onOpenAI 
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search or type a command..."
-            style={{ flex: 1, background: "transparent", border: "none", outline: "none", fontSize: 17, color: "#F1F1F1", fontFamily: "Inter, sans-serif", caretColor: "#7C3AED" }}
+            style={{ flex: 1, background: "transparent", border: "none", outline: "none", fontSize: 17, color: "#F1F1F1", fontFamily: "Inter, sans-serif", caretColor: "#B4F24A" }}
           />
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            {isLoading && <div style={{ width: 14, height: 14, border: "2px solid rgba(255,255,255,0.1)", borderTopColor: "#7C3AED", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />}
+            {isLoading && <div style={{ width: 14, height: 14, border: "2px solid rgba(255,255,255,0.1)", borderTopColor: "#B4F24A", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />}
             {query && <button onClick={() => setQuery("")} style={{ background: "transparent", border: "none", cursor: "pointer", color: "#555", padding: 2 }}><X size={14} /></button>}
             <kbd style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 4, padding: "2px 6px", fontSize: 11, color: "#555", fontFamily: "inherit" }}>esc</kbd>
           </div>
@@ -218,17 +219,17 @@ export function CommandPalette({ open, onClose, onNavigate, onCompose, onOpenAI 
                 style={{
                   width: "100%", display: "flex", alignItems: "center", gap: 12,
                   padding: "10px 20px",
-                  background: isSelected ? "rgba(124,58,237,0.1)" : "transparent",
+                  background: isSelected ? "rgba(180,242,74,0.1)" : "transparent",
                   borderWidth: "0 0 0 2px",
                   borderStyle: "solid",
-                  borderColor: isSelected ? "#7C3AED" : "transparent",
+                  borderColor: isSelected ? "#B4F24A" : "transparent",
                   cursor: "pointer", textAlign: "left", fontFamily: "inherit",
                   transition: "background 100ms",
                 }}
               >
                 <div style={{
                   width: 32, height: 32, borderRadius: 8, flexShrink: 0,
-                  background: isSelected ? "rgba(124,58,237,0.15)" : "rgba(255,255,255,0.05)",
+                  background: action.accent === "green" ? "rgba(180,242,74,0.1)" : "rgba(245,140,40,0.1)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                 }}>
                   {action.icon}
@@ -237,7 +238,7 @@ export function CommandPalette({ open, onClose, onNavigate, onCompose, onOpenAI 
                   <div style={{ fontSize: 13, fontWeight: 500, color: "#F1F1F1", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{action.title}</div>
                   <div style={{ fontSize: 12, color: "#555", marginTop: 1 }}>{action.subtitle}</div>
                 </div>
-                {isSelected && <ArrowRight size={14} color="#7C3AED" />}
+                {isSelected && <ArrowRight size={14} color="#B4F24A" />}
               </button>
             );
           })}
@@ -248,7 +249,7 @@ export function CommandPalette({ open, onClose, onNavigate, onCompose, onOpenAI 
           <span>↑↓ navigate</span>
           <span>↵ select</span>
           <span>esc close</span>
-          <div style={{ marginLeft: "auto", color: "#7C3AED", fontWeight: 600 }}>FlowMail</div>
+          <div style={{ marginLeft: "auto", color: "#B4F24A", fontWeight: 600 }}>FlowMail</div>
         </div>
       </div>
       <style>{`@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}</style>

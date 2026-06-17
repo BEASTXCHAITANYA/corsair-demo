@@ -1,12 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   ChevronLeft, ChevronRight, RefreshCw,
   Plus, X, Calendar, Clock, MapPin, Users
 } from "lucide-react";
 import { api } from "@/trpc/react";
 import { useToast } from "@/app/_components/toast";
+import { Calendar as DatePicker } from "@/components/ui/calendar";
 
 function getWeekBounds(offset: number) {
   const now = new Date();
@@ -41,6 +42,30 @@ function toDatetimeLocal(date: Date): string {
 
 const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
+const GRID_START_HOUR = 8;
+const GRID_END_HOUR = 20;
+const GRID_ROW_HEIGHT = 48;
+const GRID_HOURS = Array.from(
+  { length: GRID_END_HOUR - GRID_START_HOUR + 1 },
+  (_, i) => GRID_START_HOUR + i,
+);
+
+function getEventGridOffsets(startStr: string, endStr: string): { top: number; height: number } {
+  const start = new Date(startStr);
+  const startHour = start.getHours() + start.getMinutes() / 60;
+  const top = (startHour - GRID_START_HOUR) * GRID_ROW_HEIGHT;
+
+  let durationHours = 1;
+  if (endStr) {
+    const end = new Date(endStr);
+    const diffMs = end.getTime() - start.getTime();
+    if (diffMs > 0) durationHours = diffMs / (1000 * 60 * 60);
+  }
+  const height = Math.max(durationHours * GRID_ROW_HEIGHT, 20);
+
+  return { top, height };
+}
+
 function LoadingDots() {
   return (
     <div className="loading-dots">
@@ -49,12 +74,27 @@ function LoadingDots() {
   );
 }
 
-export function CalendarPanel() {
+interface CalendarPanelProps {
+  listOnly?: boolean;
+  externalCreate?: boolean;
+  onCreateClose?: () => void;
+}
+
+export function CalendarPanel({ listOnly = false, externalCreate, onCreateClose }: CalendarPanelProps = {}) {
   const [weekOffset, setWeekOffset] = useState(0);
+  const [date, setDate] = useState<Date | undefined>(new Date());
   const [search, setSearch] = useState("");
   const [activeSearch, setActiveSearch] = useState("");
   const [creating, setCreating] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (externalCreate) {
+      setCreating(true);
+      onCreateClose?.();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [externalCreate]);
 
   const defaultStart = new Date();
   defaultStart.setMinutes(0, 0, 0);
@@ -153,7 +193,7 @@ export function CalendarPanel() {
   return (
     <>
       {/* List Pane — week navigation + event list */}
-      <div className="list-pane">
+      <div className="list-pane" style={listOnly ? { width: "100%" } : undefined}>
         {/* Header */}
         <div className="pane-header">
           <span className="pane-title">Calendar</span>
@@ -274,6 +314,11 @@ export function CalendarPanel() {
           )}
         </form>
 
+        {/* Date picker */}
+        <div style={{ padding: 12, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+          <DatePicker mode="single" selected={date} onSelect={setDate} />
+        </div>
+
         {/* Event list */}
         <div className="email-list" role="list">
           {events.isLoading && (
@@ -359,22 +404,119 @@ export function CalendarPanel() {
       </div>
 
       {/* Detail Pane */}
+      {!listOnly && (
       <div className="detail-pane">
         {!selectedEvent ? (
-          <div className="empty-state" style={{ height: "100%" }}>
-            <Calendar size={48} className="empty-state-icon" />
-            <span className="empty-state-text">Select an event to view details</span>
-            <span className="empty-state-sub">
-              Or create a new event with the + button
-            </span>
-            <button
-              className="btn btn-primary"
-              style={{ marginTop: 8 }}
-              onClick={() => setCreating(true)}
-            >
-              <Plus size={14} />
-              New Event
-            </button>
+          <div style={{ height: "100%", overflowY: "auto" }}>
+            {/* Day header row */}
+            <div style={{ display: "flex", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+              <div style={{ width: 48, flexShrink: 0 }} />
+              {weekDates.map((d, i) => {
+                const isToday = d.toDateString() === today.toDateString();
+                return (
+                  <div
+                    key={i}
+                    style={{
+                      flex: 1,
+                      textAlign: "center",
+                      padding: "8px 0",
+                      fontSize: 11,
+                      fontWeight: 600,
+                      color: isToday ? "var(--accent)" : "var(--text-3)",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.05em",
+                      background: isToday ? "rgba(255,255,255,0.02)" : "transparent",
+                    }}
+                  >
+                    {DAYS[i]} {d.getDate()}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Time grid */}
+            <div style={{ display: "flex" }}>
+              {/* Hour labels */}
+              <div style={{ width: 48, flexShrink: 0 }}>
+                {GRID_HOURS.map((h) => (
+                  <div
+                    key={h}
+                    style={{
+                      height: GRID_ROW_HEIGHT,
+                      borderBottom: "1px solid rgba(255,255,255,0.04)",
+                      fontSize: 11,
+                      color: "#444",
+                      textAlign: "right",
+                      paddingRight: 6,
+                      boxSizing: "border-box",
+                    }}
+                  >
+                    {String(h).padStart(2, "0")}:00
+                  </div>
+                ))}
+              </div>
+
+              {/* Day columns */}
+              {weekDates.map((d, dayIndex) => {
+                const isToday = d.toDateString() === today.toDateString();
+                const dayEvents = eventsByDay[dayIndex] ?? [];
+                return (
+                  <div
+                    key={dayIndex}
+                    style={{
+                      flex: 1,
+                      position: "relative",
+                      background: isToday ? "rgba(255,255,255,0.02)" : "transparent",
+                    }}
+                  >
+                    {GRID_HOURS.map((h) => (
+                      <div
+                        key={h}
+                        style={{
+                          height: GRID_ROW_HEIGHT,
+                          borderBottom: "1px solid rgba(255,255,255,0.04)",
+                          boxSizing: "border-box",
+                        }}
+                      />
+                    ))}
+                    {dayEvents.map((event) => {
+                      const { top, height } = getEventGridOffsets(event.start, event.end);
+                      return (
+                        <div
+                          key={event.id}
+                          style={{
+                            position: "absolute",
+                            left: 2,
+                            right: 2,
+                            top,
+                            height,
+                            background: "rgba(180,242,74,0.12)",
+                            border: "1px solid rgba(180,242,74,0.25)",
+                            borderRadius: 6,
+                            padding: "4px 8px",
+                            fontSize: 12,
+                            color: "#B4F24A",
+                            overflow: "hidden",
+                          }}
+                        >
+                          <div
+                            style={{
+                              fontWeight: 600,
+                              whiteSpace: "nowrap",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                            }}
+                          >
+                            {event.summary || "Untitled"}
+                          </div>
+                          <div style={{ fontSize: 10, opacity: 0.85 }}>{formatEventTime(event.start)}</div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         ) : selectedEventData ? (
           <>
@@ -472,6 +614,7 @@ export function CalendarPanel() {
           </>
         ) : null}
       </div>
+      )}
 
       {/* Create Event Drawer */}
       {creating && (

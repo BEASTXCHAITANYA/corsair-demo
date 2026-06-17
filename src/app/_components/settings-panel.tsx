@@ -101,13 +101,13 @@ export function SettingsPanel() {
                 display: "flex", alignItems: "center", gap: 8,
                 padding: "8px 10px",
 
-                background: isActive ? "rgba(124,58,237,0.1)" : "transparent",
+                background: isActive ? "rgba(180,242,74,0.1)" : "transparent",
                 borderWidth: "0 0 0 2px",
                 borderStyle: "solid",
-                borderColor: isActive ? "#7C3AED" : "transparent",
+                borderColor: isActive ? "#B4F24A" : "transparent",
                 borderRadius: 8,
                 cursor: "pointer",
-                color: isActive ? "#A78BFA" : "#8A8A8A",
+                color: isActive ? "#B4F24A" : "#8A8A8A",
                 fontSize: 13,
                 fontWeight: isActive ? 500 : 400,
                 fontFamily: "inherit",
@@ -138,7 +138,7 @@ export function SettingsPanel() {
                 <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
                   <div style={{
                     width: 48, height: 48, borderRadius: "50%",
-                    background: "linear-gradient(135deg, #7C3AED, #06B6D4)",
+                    background: "linear-gradient(135deg, #B4F24A, #F28C28)",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     fontSize: 18, fontWeight: 700, color: "#fff",
                   }}>
@@ -150,8 +150,8 @@ export function SettingsPanel() {
                   </div>
                 </div>
                 <span style={{
-                  background: "rgba(34,197,94,0.1)", color: "#22C55E",
-                  border: "1px solid rgba(34,197,94,0.2)",
+                  background: "rgba(180,242,74,0.1)", color: "#B4F24A",
+                  border: "1px solid rgba(180,242,74,0.2)",
                   borderRadius: 999, padding: "3px 10px", fontSize: 11, fontWeight: 500,
                 }}>
                   Active
@@ -163,8 +163,8 @@ export function SettingsPanel() {
                   <div style={{ fontSize: 12, color: "#555", marginTop: 2 }}>Personal · Powered by Corsair</div>
                 </div>
                 <span style={{
-                  background: "rgba(124,58,237,0.1)", color: "#A78BFA",
-                  border: "1px solid rgba(124,58,237,0.2)",
+                  background: "rgba(180,242,74,0.1)", color: "#B4F24A",
+                  border: "1px solid rgba(180,242,74,0.2)",
                   borderRadius: 999, padding: "3px 10px", fontSize: 11, fontWeight: 500,
                 }}>
                   Free
@@ -197,8 +197,8 @@ export function SettingsPanel() {
                   </div>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                  <CheckCircle size={14} color="#22C55E" />
-                  <span style={{ fontSize: 12, color: "#22C55E", fontWeight: 500 }}>Connected</span>
+                  <CheckCircle size={14} color="#B4F24A" />
+                  <span style={{ fontSize: 12, color: "#B4F24A", fontWeight: 500 }}>Connected</span>
                 </div>
               </Row>
               <Row last>
@@ -216,8 +216,8 @@ export function SettingsPanel() {
                   </div>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                  <CheckCircle size={14} color="#22C55E" />
-                  <span style={{ fontSize: 12, color: "#22C55E", fontWeight: 500 }}>Connected</span>
+                  <CheckCircle size={14} color="#B4F24A" />
+                  <span style={{ fontSize: 12, color: "#B4F24A", fontWeight: 500 }}>Connected</span>
                 </div>
               </Row>
             </Card>
@@ -228,7 +228,7 @@ export function SettingsPanel() {
                 <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                   <div style={{
                     width: 36, height: 36, borderRadius: 8,
-                    background: "linear-gradient(135deg, #7C3AED, #06B6D4)",
+                    background: "linear-gradient(135deg, #B4F24A, #F28C28)",
                     display: "flex", alignItems: "center", justifyContent: "center",
                   }}>
                     <Zap size={18} color="#fff" />
@@ -244,7 +244,7 @@ export function SettingsPanel() {
                   rel="noopener noreferrer"
                   style={{
                     display: "flex", alignItems: "center", gap: 4,
-                    fontSize: 12, color: "#7C3AED", textDecoration: "none",
+                    fontSize: 12, color: "#B4F24A", textDecoration: "none",
                   }}
                 >
                   Visit <ExternalLink size={11} />
@@ -301,7 +301,7 @@ export function SettingsPanel() {
               </Row>
               <Row last>
                 <span style={{ fontSize: 13, color: "#8A8A8A" }}>Hackathon</span>
-                <span style={{ fontSize: 13, color: "#A78BFA", fontWeight: 500 }}>ChaiCode × Corsair 2026</span>
+                <span style={{ fontSize: 13, color: "#B4F24A", fontWeight: 500 }}>ChaiCode × Corsair 2026</span>
               </Row>
             </Card>
 
@@ -310,7 +310,7 @@ export function SettingsPanel() {
               {["Next.js 15", "React 19", "tRPC 11", "Drizzle ORM", "PostgreSQL", "Corsair", "TypeScript", "OpenAI GPT-4o"].map((tech, i, arr) => (
                 <Row key={tech} last={i === arr.length - 1}>
                   <span style={{ fontSize: 13, color: "#8A8A8A" }}>{tech}</span>
-                  <CheckCircle size={14} color="#22C55E" />
+                  <CheckCircle size={14} color="#B4F24A" />
                 </Row>
               ))}
             </Card>
@@ -323,7 +323,7 @@ export function SettingsPanel() {
                   <span style={{ fontSize: 13, color: "#8A8A8A" }}>Source Code</span>
                 </div>
                 <a href="https://github.com" target="_blank" rel="noopener noreferrer"
-                  style={{ fontSize: 12, color: "#7C3AED", textDecoration: "none", display: "flex", alignItems: "center", gap: 4 }}>
+                  style={{ fontSize: 12, color: "#B4F24A", textDecoration: "none", display: "flex", alignItems: "center", gap: 4 }}>
                   GitHub <ExternalLink size={11} />
                 </a>
               </Row>
@@ -333,7 +333,7 @@ export function SettingsPanel() {
                   <span style={{ fontSize: 13, color: "#8A8A8A" }}>Powered by Corsair</span>
                 </div>
                 <a href="https://corsair.dev" target="_blank" rel="noopener noreferrer"
-                  style={{ fontSize: 12, color: "#7C3AED", textDecoration: "none", display: "flex", alignItems: "center", gap: 4 }}>
+                  style={{ fontSize: 12, color: "#B4F24A", textDecoration: "none", display: "flex", alignItems: "center", gap: 4 }}>
                   corsair.dev <ExternalLink size={11} />
                 </a>
               </Row>

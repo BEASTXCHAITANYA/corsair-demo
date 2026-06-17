@@ -47,11 +47,11 @@ const ACTION_CONFIG: Record<ActionType, {
   border: string;
   icon: React.ReactNode;
 }> = {
-  email_sent:      { color: "#22C55E", bg: "rgba(34,197,94,0.12)",   border: "rgba(34,197,94,0.25)",   icon: <Mail size={13} /> },
-  email_drafted:   { color: "#22C55E", bg: "rgba(34,197,94,0.10)",   border: "rgba(34,197,94,0.2)",    icon: <FileText size={13} /> },
-  event_created:   { color: "#06B6D4", bg: "rgba(6,182,212,0.12)",   border: "rgba(6,182,212,0.25)",   icon: <Calendar size={13} /> },
-  invite_sent:     { color: "#06B6D4", bg: "rgba(6,182,212,0.10)",   border: "rgba(6,182,212,0.2)",    icon: <Calendar size={13} /> },
-  emails_searched: { color: "#7C3AED", bg: "rgba(124,58,237,0.12)",  border: "rgba(124,58,237,0.25)",  icon: <Search size={13} /> },
+  email_sent:      { color: "#B4F24A", bg: "rgba(180,242,74,0.12)",   border: "rgba(180,242,74,0.25)",   icon: <Mail size={13} /> },
+  email_drafted:   { color: "#B4F24A", bg: "rgba(180,242,74,0.10)",   border: "rgba(180,242,74,0.2)",    icon: <FileText size={13} /> },
+  event_created:   { color: "#F28C28", bg: "rgba(245,140,40,0.12)",   border: "rgba(245,140,40,0.25)",   icon: <Calendar size={13} /> },
+  invite_sent:     { color: "#F28C28", bg: "rgba(245,140,40,0.10)",   border: "rgba(245,140,40,0.2)",    icon: <Calendar size={13} /> },
+  emails_searched: { color: "#B4F24A", bg: "rgba(180,242,74,0.12)",  border: "rgba(180,242,74,0.25)",  icon: <Search size={13} /> },
   ai_summary:      { color: "#F59E0B", bg: "rgba(245,158,11,0.12)",  border: "rgba(245,158,11,0.25)",  icon: <Bot size={13} /> },
 };
 
@@ -134,9 +134,9 @@ export function ActionFeed({ open, onClose }: ActionFeedProps) {
       }}>
         <div style={{
           width: 28, height: 28, borderRadius: 8,
-          background: "linear-gradient(135deg, #7C3AED, #06B6D4)",
+          background: "linear-gradient(135deg, #B4F24A, #F28C28)",
           display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 0 12px rgba(124,58,237,0.4)",
+          boxShadow: "0 0 12px rgba(180,242,74,0.4)",
           flexShrink: 0,
         }}>
           <Zap size={13} color="#fff" />
@@ -173,8 +173,8 @@ export function ActionFeed({ open, onClose }: ActionFeedProps) {
       }}>
         <div style={{
           width: 6, height: 6, borderRadius: "50%",
-          background: "#22C55E",
-          boxShadow: "0 0 6px rgba(34,197,94,0.6)",
+          background: "#B4F24A",
+          boxShadow: "0 0 6px rgba(180,242,74,0.6)",
           animation: "pulse 2s infinite",
         }} />
         <span style={{ fontSize: 11, color: "#475569" }}>
@@ -301,8 +301,8 @@ export function ActionFeed({ open, onClose }: ActionFeedProps) {
           to { transform: translateX(0); opacity: 1; }
         }
         @keyframes pulse {
-          0%, 100% { opacity: 1; box-shadow: 0 0 6px rgba(34,197,94,0.6); }
-          50% { opacity: 0.5; box-shadow: 0 0 10px rgba(34,197,94,0.3); }
+          0%, 100% { opacity: 1; box-shadow: 0 0 6px rgba(180,242,74,0.6); }
+          50% { opacity: 0.5; box-shadow: 0 0 10px rgba(180,242,74,0.3); }
         }
       `}</style>
     </div>

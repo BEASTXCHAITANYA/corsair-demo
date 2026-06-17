@@ -16,12 +16,12 @@
   --text-3: #475569;
 
   /* ── Accent ──────────────────────────────── */
-  --accent:       #7C3AED;
-  --accent-hover: #6D28D9;
-  --accent-dim:   rgba(124, 58, 237, 0.15);
+  --accent:       #B4F24A;
+  --accent-hover: #A3E635;
+  --accent-dim:   rgba(180, 242, 74, 0.15);
 
   /* ── Semantic ────────────────────────────── */
-  --success: #22C55E;
+  --success: #B4F24A;
   --danger:  #EF4444;
   --warning: #F59E0B;
 
@@ -37,6 +37,33 @@
   --transition: 150ms ease;
 }
 
+/* ── shadcn token bridge ───────────────────────────────────
+   Maps canonical shadcn utility tokens (bg-primary, border-input,
+   ring-ring, ...) used by src/components/ui/* primitives onto the
+   palette above, so they render in this app's existing purple/cyan
+   theme instead of being unstyled. Purely additive - nothing above
+   is renamed.
+   Note: --color-accent here is shadcn's "subtle hover surface" token,
+   unrelated to this file's own --accent (brand purple), which is
+   aliased to --color-primary instead. */
+@theme {
+  --color-background: var(--surface-2);
+  --color-foreground: var(--text-1);
+  --color-primary: var(--accent);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--surface-3);
+  --color-secondary-foreground: var(--text-1);
+  --color-muted: var(--surface-3);
+  --color-muted-foreground: var(--text-3);
+  --color-accent: rgba(255, 255, 255, 0.08);
+  --color-accent-foreground: var(--text-1);
+  --color-destructive: var(--danger);
+  --color-destructive-foreground: #ffffff;
+  --color-border: var(--border-hover);
+  --color-input: var(--border-hover);
+  --color-ring: var(--accent);
+}
+
 /* ── Reset ─────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -44,9 +71,9 @@ html, body {
   height: 100%;
   background: var(--bg);
   background-image:
-    radial-gradient(ellipse at 15% 40%, rgba(124, 58, 237, 0.12) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 15%, rgba(6, 182, 212, 0.08) 0%, transparent 55%),
-    radial-gradient(ellipse at 50%, rgba(124, 58, 237, 0.07) 0%, transparent 50%);
+    radial-gradient(ellipse at 15% 40%, rgba(180, 242, 74, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 15%, rgba(245, 140, 40, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 50%, rgba(180, 242, 74, 0.07) 0%, transparent 50%);
   color: var(--text-1);
   font-family: var(--font-inter, "Inter"), -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
@@ -143,9 +170,9 @@ html, body {
   width: 100vw;
   overflow: hidden;
   background-image:
-    radial-gradient(ellipse at 15% 50%, rgba(124, 58, 237, 0.18) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 15%, rgba(6, 182, 212, 0.12) 0%, transparent 55%),
-    radial-gradient(ellipse at 55% 85%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+    radial-gradient(ellipse at 15% 50%, rgba(180, 242, 74, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 15%, rgba(245, 140, 40, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 55% 85%, rgba(180, 242, 74, 0.1) 0%, transparent 50%);
 }
 
 /* ── Sidebar ───────────────────────────────────────────── */
@@ -168,13 +195,13 @@ html, body {
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #7C3AED, #06B6D4);
+  background: linear-gradient(135deg, #B4F24A, #F28C28);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   flex-shrink: 0;
-  box-shadow: 0 0 16px rgba(124,58,237,0.4);
+  box-shadow: 0 0 16px rgba(180,242,74,0.4);
   margin-bottom: 4px;
 }
 
@@ -209,12 +236,12 @@ html, body {
 }
 
 .sidebar-btn.active {
-  background: rgba(124, 58, 237, 0.18);
-  color: #A78BFA;
-  box-shadow: 0 0 16px rgba(124, 58, 237, 0.4),
-              0 0 0 1px rgba(124, 58, 237, 0.2),
+  background: rgba(180, 242, 74, 0.18);
+  color: #B4F24A;
+  box-shadow: 0 0 16px rgba(180, 242, 74, 0.4),
+              0 0 0 1px rgba(180, 242, 74, 0.2),
               inset 0 1px 0 rgba(255,255,255,0.08);
-  filter: drop-shadow(0 0 6px rgba(124, 58, 237, 0.5));
+  filter: drop-shadow(0 0 6px rgba(180, 242, 74, 0.5));
   animation: glowPulse 2.5s ease-in-out infinite;
 }
 
@@ -276,12 +303,12 @@ html, body {
 
 @keyframes glowPulse {
   0%, 100% {
-    box-shadow: 0 0 16px rgba(124, 58, 237, 0.4),
-                0 0 0 1px rgba(124, 58, 237, 0.2);
+    box-shadow: 0 0 16px rgba(180, 242, 74, 0.4),
+                0 0 0 1px rgba(180, 242, 74, 0.2);
   }
   50% {
-    box-shadow: 0 0 24px rgba(124, 58, 237, 0.6),
-                0 0 0 1px rgba(124, 58, 237, 0.35);
+    box-shadow: 0 0 24px rgba(180, 242, 74, 0.6),
+                0 0 0 1px rgba(180, 242, 74, 0.35);
   }
 }
 
@@ -363,10 +390,10 @@ html, body {
 }
 
 .email-item:hover {
-  background: linear-gradient(90deg, rgba(124,58,237,0.06) 0%, rgba(19,28,43,0.8) 100%);
+  background: linear-gradient(90deg, rgba(180,242,74,0.06) 0%, rgba(19,28,43,0.8) 100%);
 }
 .email-item.selected {
-  background: linear-gradient(90deg, rgba(124,58,237,0.12) 0%, rgba(19,28,43,0.9) 100%);
+  background: linear-gradient(90deg, rgba(180,242,74,0.12) 0%, rgba(19,28,43,0.9) 100%);
   border-left-color: var(--accent);
 }
 
@@ -478,7 +505,7 @@ html, body {
 
 .btn-primary {
   background: var(--accent);
-  color: #fff;
+  color: #0A0A0A;
 }
 .btn-primary:hover:not(:disabled) { background: var(--accent-hover); }
 
@@ -514,10 +541,10 @@ html, body {
   background: rgba(10, 14, 26, 0.97);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(124,58,237,0.2);
+  border: 1px solid rgba(180,242,74,0.2);
   border-bottom: none;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  box-shadow: 0 -8px 40px rgba(124,58,237,0.15), 0 -2px 0 rgba(124,58,237,0.3);
+  box-shadow: 0 -8px 40px rgba(180,242,74,0.15), 0 -2px 0 rgba(180,242,74,0.3);
   display: flex;
   flex-direction: column;
   z-index: 100;
@@ -636,7 +663,7 @@ html, body {
   transition: background var(--transition);
 }
 
-.event-chip:hover { background: rgba(124, 58, 237, 0.25); }
+.event-chip:hover { background: rgba(180, 242, 74, 0.25); }
 
 /* ── Form elements ─────────────────────────────────────── */
 .form-field {
@@ -677,7 +704,7 @@ html, body {
 }
 
 .badge-purple { background: var(--accent-dim); color: var(--accent); }
-.badge-green  { background: rgba(34,197,94,0.15); color: var(--success); }
+.badge-green  { background: rgba(180,242,74,0.15); color: var(--success); }
 .badge-red    { background: rgba(239,68,68,0.15);  color: var(--danger); }
 
 /* ── Divider ───────────────────────────────────────────── */
@@ -740,10 +767,10 @@ html, body {
 }
 
 .glass-accent {
-  background: rgba(124, 58, 237, 0.12);
+  background: rgba(180, 242, 74, 0.12);
   backdrop-filter: blur(16px) saturate(160%);
   -webkit-backdrop-filter: blur(16px) saturate(160%);
-  border: 1px solid rgba(124, 58, 237, 0.2);
+  border: 1px solid rgba(180, 242, 74, 0.2);
 }
 
 /* ── Mobile Navbar ─────────────────────────────────────── */
@@ -791,8 +818,8 @@ html, body {
   }
 
   .mobile-nav-btn.active {
-    color: #7C3AED;
-    background: rgba(124,58,237,0.1);
+    color: #B4F24A;
+    background: rgba(180,242,74,0.1);
   }
 
   .mobile-nav-btn:hover {
@@ -846,11 +873,11 @@ html, body {
   width: 28px;
   height: 28px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #7C3AED, #06B6D4);
+  background: linear-gradient(135deg, #B4F24A, #F28C28);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 12px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 0 12px rgba(180, 242, 74, 0.4);
 }
 
 .header-logo-text {
@@ -878,7 +905,7 @@ html, body {
 
 .header-search:hover {
   background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(124, 58, 237, 0.25);
+  border-color: rgba(180, 242, 74, 0.25);
 }
 
 .header-search-text {
@@ -949,7 +976,7 @@ html, body {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #7C3AED, #06B6D4);
+  background: linear-gradient(135deg, #B4F24A, #F28C28);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -964,7 +991,7 @@ html, body {
 
 .header-avatar:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 12px rgba(124, 58, 237, 0.5);
+  box-shadow: 0 0 12px rgba(180, 242, 74, 0.5);
 }
 
 /* Adjust app-shell for header */
@@ -994,11 +1021,11 @@ html, body {
 @keyframes livePulse {
   0%, 100% { 
     opacity: 1; 
-    box-shadow: 0 0 6px rgba(34,197,94,0.8); 
+    box-shadow: 0 0 6px rgba(180,242,74,0.8); 
   }
   50% { 
     opacity: 0.7; 
-    box-shadow: 0 0 12px rgba(34,197,94,0.4); 
+    box-shadow: 0 0 12px rgba(180,242,74,0.4); 
   }
 }
 

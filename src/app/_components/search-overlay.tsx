@@ -92,9 +92,9 @@ export function SearchOverlay({ open, onClose, onSelectEmail }: SearchOverlayPro
       <div style={{ position: "fixed", top: "20%", left: "50%", transform: "translateX(-50%)", width: "100%", maxWidth: 640, background: "#141414", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, boxShadow: "0 40px 80px rgba(0,0,0,0.6)", zIndex: 1001, overflow: "hidden" }} onKeyDown={handleKeyDown}>
         <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "16px 20px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
           <Search size={18} color="#8A8A8A" />
-          <input ref={inputRef} value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search emails and events..." style={{ flex: 1, background: "transparent", border: "none", outline: "none", fontSize: 17, color: "#F1F1F1", fontFamily: "Inter, sans-serif", caretColor: "#7C3AED" }} />
+          <input ref={inputRef} value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search emails and events..." style={{ flex: 1, background: "transparent", border: "none", outline: "none", fontSize: 17, color: "#F1F1F1", fontFamily: "Inter, sans-serif", caretColor: "#B4F24A" }} />
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            {isLoading && <div style={{ width: 14, height: 14, border: "2px solid rgba(255,255,255,0.1)", borderTopColor: "#7C3AED", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />}
+            {isLoading && <div style={{ width: 14, height: 14, border: "2px solid rgba(255,255,255,0.1)", borderTopColor: "#B4F24A", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />}
             <kbd style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 4, padding: "2px 6px", fontSize: 11, color: "#8A8A8A", fontFamily: "inherit" }}>esc</kbd>
           </div>
         </div>
@@ -117,16 +117,16 @@ export function SearchOverlay({ open, onClose, onSelectEmail }: SearchOverlayPro
                 const isSelected = selectedIndex === i;
                 return (
                   <button key={result.id} onClick={() => handleSelect(result)} onMouseEnter={() => setSelectedIndex(i)}
-                    style={{ width: "100%", display: "flex", alignItems: "center", gap: 12, padding: "10px 20px", background: isSelected ? "rgba(124,58,237,0.1)" : "transparent", borderLeft: isSelected ? "2px solid #7C3AED" : "2px solid transparent", border: "none", cursor: "pointer", textAlign: "left", fontFamily: "inherit" }}>
-                    <div style={{ width: 32, height: 32, borderRadius: 8, background: isSelected ? "rgba(124,58,237,0.2)" : "rgba(255,255,255,0.05)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                      <Mail size={14} color={isSelected ? "#7C3AED" : "#8A8A8A"} />
+                    style={{ width: "100%", display: "flex", alignItems: "center", gap: 12, padding: "10px 20px", background: isSelected ? "rgba(180,242,74,0.1)" : "transparent", borderLeft: isSelected ? "2px solid #B4F24A" : "2px solid transparent", border: "none", cursor: "pointer", textAlign: "left", fontFamily: "inherit" }}>
+                    <div style={{ width: 32, height: 32, borderRadius: 8, background: isSelected ? "rgba(180,242,74,0.2)" : "rgba(255,255,255,0.05)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <Mail size={14} color={isSelected ? "#B4F24A" : "#8A8A8A"} />
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ fontSize: 13, fontWeight: 500, color: "#F1F1F1", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{result.title}</div>
                       <div style={{ fontSize: 12, color: "#8A8A8A", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginTop: 1 }}>{result.subtitle}</div>
                     </div>
                     <div style={{ fontSize: 11, color: "#555", flexShrink: 0 }}>{result.timestamp}</div>
-                    {isSelected && <ArrowRight size={14} color="#7C3AED" />}
+                    {isSelected && <ArrowRight size={14} color="#B4F24A" />}
                   </button>
                 );
               })}
@@ -141,15 +141,15 @@ export function SearchOverlay({ open, onClose, onSelectEmail }: SearchOverlayPro
                 const isSelected = selectedIndex === globalIndex;
                 return (
                   <button key={result.id} onClick={() => handleSelect(result)} onMouseEnter={() => setSelectedIndex(globalIndex)}
-                    style={{ width: "100%", display: "flex", alignItems: "center", gap: 12, padding: "10px 20px", background: isSelected ? "rgba(124,58,237,0.1)" : "transparent", borderLeft: isSelected ? "2px solid #7C3AED" : "2px solid transparent", border: "none", cursor: "pointer", textAlign: "left", fontFamily: "inherit" }}>
-                    <div style={{ width: 32, height: 32, borderRadius: 8, background: isSelected ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.05)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                      <Calendar size={14} color={isSelected ? "#22C55E" : "#8A8A8A"} />
+                    style={{ width: "100%", display: "flex", alignItems: "center", gap: 12, padding: "10px 20px", background: isSelected ? "rgba(180,242,74,0.1)" : "transparent", borderLeft: isSelected ? "2px solid #B4F24A" : "2px solid transparent", border: "none", cursor: "pointer", textAlign: "left", fontFamily: "inherit" }}>
+                    <div style={{ width: 32, height: 32, borderRadius: 8, background: isSelected ? "rgba(180,242,74,0.2)" : "rgba(255,255,255,0.05)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <Calendar size={14} color={isSelected ? "#B4F24A" : "#8A8A8A"} />
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ fontSize: 13, fontWeight: 500, color: "#F1F1F1", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{result.title}</div>
                       <div style={{ fontSize: 12, color: "#8A8A8A", marginTop: 1 }}>{result.subtitle}{result.timestamp && ` · ${result.timestamp}`}</div>
                     </div>
-                    {isSelected && <ArrowRight size={14} color="#7C3AED" />}
+                    {isSelected && <ArrowRight size={14} color="#B4F24A" />}
                   </button>
                 );
               })}
@@ -163,7 +163,7 @@ export function SearchOverlay({ open, onClose, onSelectEmail }: SearchOverlayPro
           <span>esc close</span>
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 4 }}>
             <span>Powered by</span>
-            <span style={{ color: "#7C3AED", fontWeight: 600 }}>Corsair</span>
+            <span style={{ color: "#B4F24A", fontWeight: 600 }}>Corsair</span>
           </div>
         </div>
       </div>

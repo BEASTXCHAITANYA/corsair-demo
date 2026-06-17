@@ -25,16 +25,16 @@ export function useToast() {
 }
 
 const ICONS = {
-  success: <CheckCircle size={16} color="#22C55E" />,
+  success: <CheckCircle size={16} color="#B4F24A" />,
   error: <XCircle size={16} color="#EF4444" />,
-  info: <Info size={16} color="#06B6D4" />,
+  info: <Info size={16} color="#F28C28" />,
   warning: <AlertTriangle size={16} color="#F59E0B" />,
 };
 
 const BORDERS = {
-  success: "rgba(34,197,94,0.5)",
+  success: "rgba(180,242,74,0.5)",
   error: "rgba(239,68,68,0.5)",
-  info: "rgba(6,182,212,0.5)",
+  info: "rgba(245,140,40,0.5)",
   warning: "rgba(245,158,11,0.5)",
 };
 

@@ -16,6 +16,9 @@ FlowMail is a premium productivity app that unifies your Gmail inbox and Google 
 ### Landing Page
 ![Landing Page](screenshots/landing.png)
 
+### Core Features
+![Features](screenshots/features.png)
+
 ### Dashboard Home
 ![Dashboard](screenshots/dashboard.png)
 
@@ -25,8 +28,6 @@ FlowMail is a premium productivity app that unifies your Gmail inbox and Google 
 ### AI Agent Chat
 ![AI Chat](screenshots/ai-chat.png)
 
-### Core Features
-![Features](screenshots/features.png)
 
 
 
